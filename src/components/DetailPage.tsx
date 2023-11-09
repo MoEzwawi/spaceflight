@@ -11,7 +11,7 @@ const DetailPage = () => {
     const myId = params.id
     console.log(myId)
 
-    const [article, setArticle] = useState<Result>()
+    const [article, setArticle] = useState<Result | null>(null)
 
     useEffect(() => {
         const fetchArticle = async () => {
@@ -34,7 +34,17 @@ const DetailPage = () => {
     console.log(article)
 
     return (
-        <h2>Sono la Detail Page</h2>
+        <Container>
+            {article && (
+                <Row>
+                    <Col>{article.title}</Col>
+                    <Col>{article.news_site}</Col>
+                    <Col>
+                        <img src={article.image_url} alt="space" width="450px" />
+                    </Col>
+                </Row>
+            )}
+        </Container>
     )
 }
 
